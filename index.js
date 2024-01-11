@@ -1,14 +1,15 @@
 import express from "express";
-import nodemailer from "nodemailer";
+import nodemailer from "nodemailer"; //step 1: install nodemailer and import it
 import bodyParser from "body-parser";
 
 const app = express();
 const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json()); // step 2: use express middleware as json()
+app.use(express.static("public"));
 
-
+// step 3: create config set
 const config = {
   service: "gmail",
   host: "smtp.gmail.com",
@@ -19,7 +20,7 @@ const config = {
     pass: "wbavrcdrblchhyxl",
   },
 };
-
+// step 4: create a sendemail function
 const sends = (data) => {
   return new Promise((resolve, reject) => {
     const transport = nodemailer.createTransport(config);
@@ -32,10 +33,12 @@ const sends = (data) => {
     });
   });
 };
-
+// step 5: render the index.ejs
 app.get("/", (req, res) =>{
     res.render("index.ejs");
 })
+
+// step 6: send the  data via post and display it
 
 app.post("/api/email", async (req, res) => {
   const { from, to, subject, text } = req.body;
@@ -56,5 +59,6 @@ app.post("/api/email", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on ${port}`);
+  console.log("Started Server.....");
+  console.log(`Server is running on port ${port}`);
 });

@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    color: white;
+}
+
+input{
+    padding: 1rem;
+    border: none;
+    font-size: .9rem;
+    color: black;
+    font-weight: bolder;
+    border:2px solid brown;
+    transition: all .5s;
+
+
+}
+input::placeholder{
+    color: black;
+    font-weight: 100;
+}
+input:focus{
+    box-shadow: 0px 0px 30px white;
+
+
+
+}
+button{
+    padding: 1rem;
+    background-color: white;
+    color:black;
+    border:2px solid brown;
+    cursor: pointer;
+    transition: all .5s;
+    font-weight: bolder;
+}
+button:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    box-shadow: 0px 0px 30px white;
+
+
+
+}
